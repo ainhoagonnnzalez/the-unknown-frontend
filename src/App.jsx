@@ -7,6 +7,8 @@ import ExplorePage from "./pages/ExplorePage";
 import MysteryDetailsPage from "./pages/MysteryDetailsPage";
 import SubmitTheoryPage from "./pages/SubmitTheoryPage";
 import EditTheoryPage from "./pages/EditTheoryPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import Footer from "./components/Footer"
 
 function App() {
   return (
@@ -18,7 +20,10 @@ function App() {
         <Route path="/mysteries/:id" element={<MysteryDetailsPage />} />
         <Route path="/mysteries/:id/theories/new" element={<SubmitTheoryPage />}/>
         <Route path="/theories/:id/edit" element={<EditTheoryPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+        
       </Routes>
+      <Footer/>
     </div>
   );
 }

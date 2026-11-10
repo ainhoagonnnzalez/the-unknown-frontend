@@ -42,70 +42,111 @@ function ExplorePage() {
       .toLowerCase()
       .includes(search.toLowerCase());
 
-    const matchesCategory =
-      category === "all" || mystery.category === category;
+    const matchesCategory = category === "all" || mystery.category === category;
 
     return matchesSearch && matchesCategory;
   });
 
   return (
-    <div>
-      <h1>THE ARCHIVE</h1>
-      <p>Explore the world's most fascinating mysteries.</p>
+    <main className="min-h-screen bg-[#111210] px-8 py-20 text-[#F0EDE5]">
+      <div className="mx-auto max-w-7xl">
+        {/* HEADER */}
+        <header className="mb-16">
+          <p className="mb-6 text-xs tracking-[0.3em] text-[#B49A6C]">
+            02 / THE COLLECTION
+          </p>
 
-      {/* Search bar */}
-      <input
-        type="text"
-        placeholder="Search mysteries..."
-        value={search}
-        onChange={(event) => setSearch(event.target.value)}
-      />
+          <h1 className="mb-6 text-7xl font-bold tracking-tighter">
+            THE ARCHIVE
+          </h1>
 
-      {/* Category filter */}
-      <select
-        value={category}
-        onChange={(event) => setCategory(event.target.value)}
-      >
-        <option value="all">All Categories</option>
+          <p className="max-w-xl text-lg text-[#A8A8A3]">
+            Thirty mysteries. Countless unanswered questions. Explore the
+            stories that continue to defy explanation.
+          </p>
+        </header>
 
-        {categories.map((item) => {
-          return (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          );
-        })}
-      </select>
+        {/* SEARCH AND FILTERS */}
+        <section className="mb-12 border-t border-white/10 pt-10">
+          <p className="mb-6 text-xs tracking-[0.2em] text-[#B49A6C]">
+            SEARCH THE ARCHIVE
+          </p>
 
-      {/* Mysteries results */}
-      <div>
-        {/* Loading */}
-        {loading && <p>Loading mysteries...</p>}
+          <div className="flex flex-col gap-4 md:flex-row">
+            {/* SEARCH INPUT */}
+            <input
+              type="text"
+              placeholder="Search mysteries..."
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              className="w-full border border-white/20 bg-[#1A1B19] px-6 py-4 text-[#F0EDE5] outline-none focus:border-[#B49A6C]"
+            />
 
-        {/* Error */}
+            {/* CATEGORY FILTER */}
+            <select
+              value={category}
+              onChange={(event) => setCategory(event.target.value)}
+              className="w-full border border-white/20 bg-[#1A1B19] px-6 py-4 text-[#F0EDE5] outline-none focus:border-[#B49A6C] md:w-64"
+            >
+              <option value="all">All Categories</option>
+
+              {categories.map((item) => {
+                return (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </section>
+
+        {/* RESULTS COUNTER */}
+        {!loading && !error && (
+          <div className="mb-8 border-b border-white/10 pb-4">
+            <p className="text-xs tracking-[0.2em] text-[#A8A8A3]">
+              {filteredMysteries.length} CASES FOUND
+            </p>
+          </div>
+        )}
+
+        {/* LOADING */}
+        {loading && (
+          <p className="py-20 text-center text-[#A8A8A3]">
+            Loading mysteries...
+          </p>
+        )}
+
+        {/* ERROR */}
         {error && (
-          <div>
-            <h2>Something went wrong.</h2>
-            <p>We couldn't load the mysteries. Please try again later.</p>
+          <div className="py-20 text-center">
+            <h2 className="mb-4 text-2xl">Something went wrong.</h2>
+            <p className="text-[#A8A8A3]">
+              We couldn't load the mysteries. Please try again later.
+            </p>
           </div>
         )}
 
-        {/* No results */}
+        {/* NO RESULTS */}
         {!loading && !error && filteredMysteries.length === 0 && (
-          <div>
-            <h2>No mysteries found.</h2>
-            <p>Try a different search or category.</p>
+          <div className="py-20 text-center">
+            <h2 className="mb-4 text-2xl">No mysteries found.</h2>
+            <p className="text-[#A8A8A3]">
+              Try a different search or category.
+            </p>
           </div>
         )}
 
-        {/* Mystery cards */}
-        {!loading &&
-          !error &&
-          filteredMysteries.map((mystery) => {
-            return <MysteryCard key={mystery.id} mystery={mystery} />;
-          })}
+        {/* MYSTERY CARDS */}
+        {!loading && !error && (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {filteredMysteries.map((mystery) => {
+              return <MysteryCard key={mystery.id} mystery={mystery} />;
+            })}
+          </div>
+        )}
       </div>
-    </div>
+    </main>
   );
 }
 
