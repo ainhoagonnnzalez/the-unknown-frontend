@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MysteryCard from "../components/MysteryCard";
+import { useTranslation } from "react-i18next";
 
 function ExplorePage() {
+  const { t } = useTranslation();
   const [mysteries, setMysteries] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
@@ -53,30 +55,29 @@ function ExplorePage() {
         {/* HEADER */}
         <header className="mb-16">
           <p className="mb-6 text-xs tracking-[0.3em] text-[#B49A6C]">
-            02 / THE COLLECTION
+            02 / {t("exploreLabel")}
           </p>
 
           <h1 className="mb-6 text-7xl font-bold tracking-tighter">
-            THE ARCHIVE
+            {t("exploreTitle")}
           </h1>
 
           <p className="max-w-xl text-lg text-[#A8A8A3]">
-            Thirty mysteries. Countless unanswered questions. Explore the
-            stories that continue to defy explanation.
+            {t("exploreDescription")}
           </p>
         </header>
 
         {/* SEARCH AND FILTERS */}
         <section className="mb-12 border-t border-white/10 pt-10">
           <p className="mb-6 text-xs tracking-[0.2em] text-[#B49A6C]">
-            SEARCH THE ARCHIVE
+            {t("searchPlaceholder")}
           </p>
 
           <div className="flex flex-col gap-4 md:flex-row">
             {/* SEARCH INPUT */}
             <input
               type="text"
-              placeholder="Search mysteries..."
+              placeholder={t("searchBar")}
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               className="w-full border border-white/20 bg-[#1A1B19] px-6 py-4 text-[#F0EDE5] outline-none focus:border-[#B49A6C]"
@@ -88,7 +89,7 @@ function ExplorePage() {
               onChange={(event) => setCategory(event.target.value)}
               className="w-full border border-white/20 bg-[#1A1B19] px-6 py-4 text-[#F0EDE5] outline-none focus:border-[#B49A6C] md:w-64"
             >
-              <option value="all">All Categories</option>
+              <option value="all">{t("allCategories")}</option>
 
               {categories.map((item) => {
                 return (
@@ -105,7 +106,7 @@ function ExplorePage() {
         {!loading && !error && (
           <div className="mb-8 border-b border-white/10 pb-4">
             <p className="text-xs tracking-[0.2em] text-[#A8A8A3]">
-              {filteredMysteries.length} CASES FOUND
+              {filteredMysteries.length} {t("casesFound")}
             </p>
           </div>
         )}
@@ -113,14 +114,14 @@ function ExplorePage() {
         {/* LOADING */}
         {loading && (
           <p className="py-20 text-center text-[#A8A8A3]">
-            Loading mysteries...
+            {t("loadingCases")}
           </p>
         )}
 
         {/* ERROR */}
         {error && (
           <div className="py-20 text-center">
-            <h2 className="mb-4 text-2xl">Something went wrong.</h2>
+            <h2 className="mb-4 text-2xl">{t("errorCases")}</h2>
             <p className="text-[#A8A8A3]">
               We couldn't load the mysteries. Please try again later.
             </p>
@@ -130,9 +131,9 @@ function ExplorePage() {
         {/* NO RESULTS */}
         {!loading && !error && filteredMysteries.length === 0 && (
           <div className="py-20 text-center">
-            <h2 className="mb-4 text-2xl">No mysteries found.</h2>
+            <h2 className="mb-4 text-2xl">{t("noCases")}</h2>
             <p className="text-[#A8A8A3]">
-              Try a different search or category.
+              {t("noCasesDescription")}
             </p>
           </div>
         )}
@@ -146,6 +147,7 @@ function ExplorePage() {
           </div>
         )}
       </div>
+
     </main>
   );
 }

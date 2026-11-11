@@ -1,58 +1,59 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function MysteryCard({ mystery }) {
-
-  let image = "/hero.jpg";
-
-  if (mystery.id === "1") {
-    image = "/mysteries/bermuda.jpg";
-  }
-
-  if (mystery.id === "5") {
-    image = "/mysteries/mh370.jpg";
-  }
-
-  if (mystery.id === "10") {
-    image = "/mysteries/dyatlov.jpg";
-  }
-
+    const {t} = useTranslation()
   return (
-    <div className="group overflow-hidden border border-white/10 bg-[#1A1B19]">
-
-      {/* IMAGEN */}
-      <div className="overflow-hidden">
+    <Link
+      to={`/mysteries/${mystery.id}`}
+      className="group block overflow-hidden border border-white/10 bg-[#171816] transition-colors duration-300 hover:border-[#B49A6C]/50"
+    >
+      {/* IMAGE */}
+      <div className="h-[190px] overflow-hidden">
         <img
-          src={image}
+          src={mystery.image}
           alt={mystery.title}
-          className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
       </div>
 
-      {/* CONTENIDO */}
-      <div className="p-6">
+      {/* CONTENT */}
+      <div className="flex min-h-[260px] flex-col p-8">
 
-        <p className="mb-4 text-xs tracking-widest text-[#B49A6C]">
-          {mystery.category}
-        </p>
+        {/* CASE NUMBER AND CATEGORY */}
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <p className="text-xs tracking-[0.2em] text-[#B49A6C]">
+            CASE / {mystery.id}
+          </p>
 
-        <h2 className="mb-3 text-2xl font-bold text-[#F0EDE5]">
+          <p className="text-xs text-[#A8A8A3]">
+            {mystery.category}
+          </p>
+        </div>
+
+        {/* TITLE */}
+        <h2 className="mb-4 font-serif text-3xl leading-tight text-[#F0EDE5]">
           {mystery.title}
         </h2>
 
-        <p className="mb-6 text-sm text-[#A8A8A3]">
+        {/* DESCRIPTION */}
+        <p className="mb-8 text-sm leading-6 text-[#A8A8A3]">
           {mystery.subtitle}
         </p>
 
-        <Link
-          to={`/mysteries/${mystery.id}`}
-          className="text-sm text-[#B49A6C] hover:text-[#F0EDE5]"
-        >
-          EXPLORE CASE →
-        </Link>
+        {/* BOTTOM LINK */}
+        <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-6">
+          <span className="text-xs tracking-[0.2em] text-[#F0EDE5]">
+            {t("exploreCase")}
+          </span>
+
+          <span className="text-xl text-[#B49A6C] transition-transform duration-300 group-hover:translate-x-1">
+            ↗
+          </span>
+        </div>
 
       </div>
-
-    </div>
+    </Link>
   );
 }
 

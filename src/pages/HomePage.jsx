@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MysteryCard from "../components/MysteryCard";
+import { useTranslation } from "react-i18next";
 
 function HomePage() {
+  const { t } = useTranslation();
   const [mysteries, setMysteries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -18,6 +20,7 @@ function HomePage() {
 
       setMysteries(response.data);
       setLoading(false);
+      setError(false);
     } catch (error) {
       console.log(error);
       setError(true);
@@ -30,104 +33,84 @@ function HomePage() {
   });
 
   return (
-    <div className="bg-[#141411] text-[#E8DDC7]">
-      {/* HERO SECTION */}
-      <section className="flex h-[calc(100dvh-90px)] min-h-[550px] flex-col bg-[#141411] px-6 pb-4 text-[#E8DDC7] md:px-12">
-        {/* OUTER FRAME */}
-        <div className="flex h-full flex-col border-x border-b border-[#625846] p-5 md:p-8">
-          {/* TOP BAR */}
-          <div className="flex items-center justify-between border-b border-[#625846] pb-3">
-            <p className="editorial-label text-[#B6A17A]">
-              AN ARCHIVE OF THE UNEXPLAINED
-            </p>
+    <div className="bg-[#111210] text-[#F0EDE5]">
+      {/* HERO */}
+      <section className="relative min-h-screen overflow-hidden bg-[#141411] text-[#E8DDC7]">
+        {/* SMOKE BACKGROUND */}
+        <div className="pointer-events-none absolute inset-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="h-full w-full object-cover"
+          >
+            <source src="/videos/3.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-            <p className="editorial-label text-[#A69C89]">VOL. I — 2026</p>
-          </div>
+        {/* DARK OVERLAY */}
+        <div className="pointer-events-none absolute inset-0 bg-black/55"></div>
 
-          {/* MAIN CONTENT */}
-          <div className="flex min-h-0 flex-1 flex-col items-center justify-center py-4 text-center">
-            {/* ORNAMENT */}
-            <p className="animate-fade-up delay-1 mb-4 text-4xl text-[#B6A17A]">
-              ✦
-            </p>
+        {/* MAIN CONTENT */}
+        <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 pt-24 pb-12 text-center">
+          {/* CENTRAL COMPOSITION */}
+          <div className="relative flex w-full max-w-7xl items-center justify-center">
+            {/* CENTER TITLE */}
+            <div className="relative z-10">
+              <p className="editorial-label animate-fade-up delay-1 mb-8 leading-6 text-[#B6A17A]">
+                {t("heroLabel")}
+              </p>
 
-            {/* SMALL HEADING */}
-            <p className="editorial-label animate-fade-up delay-1 mb-4 leading-6 text-[#B6A17A]">
-              AN ARCHIVE OF
-              <br />
-              THE UNEXPLAINED
-            </p>
+              <h1 className="editorial-title animate-fade-up delay-2 mb-8 text-[65px] md:text-[105px] lg:text-[135px]">
+                THE
+                <br />
+                UNKNOWN
+              </h1>
 
-            {/* MAIN TITLE */}
-            <h1 className="editorial-title animate-fade-up delay-2 mb-5 text-[65px] md:text-[95px] lg:text-[115px]">
-              THE
-              <br />
-              UNKNOWN
-            </h1>
+              {/* DECORATIVE DIVIDER */}
+              <div className="animate-fade-up delay-3 mb-8 flex items-center justify-center gap-6">
+                <div className="h-px w-16 bg-[#B6A17A]/60"></div>
 
-            {/* DECORATIVE DIVIDER */}
-            <div className="animate-fade-up delay-3 mb-5 flex items-center gap-6">
-              <div className="h-px w-16 bg-[#625846]"></div>
+                <span className="text-xl text-[#B6A17A]">✦</span>
 
-              <span className="text-xl text-[#B6A17A]">✦</span>
+                <div className="h-px w-16 bg-[#B6A17A]/60"></div>
+              </div>
 
-              <div className="h-px w-16 bg-[#625846]"></div>
+              {/* DESCRIPTION */}
+              <p className="animate-fade-up delay-3 mb-8 font-serif text-xl italic text-[#C4BFB4]">
+                {t("heroSubtitle")}
+              </p>
+
+              {/* BUTTON */}
+              <Link
+                to="/mysteries"
+                className="animate-fade-up delay-4 inline-block border border-[#B6A17A] px-10 py-5 text-xs tracking-[0.2em] text-[#E8DDC7] transition-colors duration-300 hover:bg-[#B6A17A] hover:text-[#141411]"
+              >
+                {t("heroButton")}
+              </Link>
             </div>
-
-            {/* DESCRIPTION */}
-            <p className="animate-fade-up delay-3 mb-5 max-w-md font-serif text-lg italic leading-6 text-[#A69C89] md:text-xl">
-              Beyond what is known,
-              <br />
-              lies what remains hidden.
-            </p>
-
-            {/* BUTTON */}
-            <Link
-              to="/mysteries"
-              className="animate-fade-up delay-4 border border-[#B6A17A] px-10 py-3 text-xs tracking-[0.2em] text-[#E8DDC7] transition-colors duration-300 hover:bg-[#B6A17A] hover:text-[#141411]"
-            >
-              ENTER THE ARCHIVE →
-            </Link>
-          </div>
-
-          {/* BOTTOM BAR */}
-          <div className="flex items-center justify-between border-t border-[#625846] pt-3">
-            <p className="editorial-label text-[#A69C89]">EST. 2026</p>
-
-            <p className="editorial-label text-[#B6A17A]">30 CASE FILES</p>
           </div>
         </div>
       </section>
 
       {/* FEATURED CASES */}
-      <section className="bg-[#141411] px-8 py-24">
+      <section className="bg-[#111210] px-8 py-24">
         <div className="mx-auto max-w-7xl">
-          {/* SECTION LABEL */}
-          <p className="mb-4 text-xs tracking-widest text-[#B6A17A]">
-            01 / THE ARCHIVE
+          <p className="mb-4 text-xs tracking-widest text-[#B49A6C]">
+            {t("featuredLabel")}
           </p>
 
-          {/* SECTION TITLE */}
-          <h2 className="mb-4 text-5xl font-bold text-[#E8DDC7]">
-            FEATURED CASES
+          <h2 className="mb-4 font-serif text-5xl text-[#F0EDE5]">
+            {t("featuredTitle")}
           </h2>
 
-          {/* SECTION DESCRIPTION */}
-          <p className="mb-12 text-[#A69C89]">
-            Discover the stories that continue to defy explanation.
-          </p>
+          <p className="mb-12 text-[#A8A8A3]">{t("featuredDescription")}</p>
 
-          {/* LOADING */}
-          {loading && <p className="text-[#A69C89]">Loading mysteries...</p>}
+          {loading && <p>Loading mysteries...</p>}
 
-          {/* ERROR */}
-          {error && (
-            <p className="text-[#A69C89]">
-              Something went wrong loading the mysteries.
-            </p>
-          )}
+          {error && <p>Something went wrong loading the mysteries.</p>}
 
-          {/* FEATURED CARDS */}
           {!loading && !error && (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {featuredMysteries.map((mystery) => {
@@ -136,13 +119,12 @@ function HomePage() {
             </div>
           )}
 
-          {/* VIEW ALL BUTTON */}
           <div className="mt-12 text-center">
             <Link
               to="/mysteries"
-              className="inline-block border border-[#B6A17A] px-8 py-4 text-sm tracking-widest text-[#B6A17A] transition-colors duration-300 hover:bg-[#B6A17A] hover:text-[#141411]"
+              className="inline-block border border-[#B49A6C] px-8 py-4 text-sm text-[#B49A6C] transition-colors duration-300 hover:bg-[#B49A6C] hover:text-[#111210]"
             >
-              VIEW ALL CASES →
+              {t("viewAll")}
             </Link>
           </div>
         </div>

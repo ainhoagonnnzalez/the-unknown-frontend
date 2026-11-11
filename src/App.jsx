@@ -9,10 +9,12 @@ import SubmitTheoryPage from "./pages/SubmitTheoryPage";
 import EditTheoryPage from "./pages/EditTheoryPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer"
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <div>
+      <ScrollToTop />
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />

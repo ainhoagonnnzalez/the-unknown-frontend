@@ -85,3 +85,89 @@ h3 {
   letter-spacing: 0.3em;
   text-transform: uppercase;
 }
+
+/* ANIMATED FOG */
+
+.fog-container {
+  overflow: hidden;
+  z-index: 0;
+}
+
+.fog {
+  position: absolute;
+  width: 180%;
+  height: 100%;
+  left: -40%;
+  top: 0;
+
+  background:
+    radial-gradient(
+      ellipse at 20% 70%,
+      rgba(180, 180, 170, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 60% 50%,
+      rgba(160, 160, 150, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at 85% 80%,
+      rgba(180, 180, 170, 0.15),
+      transparent 35%
+    );
+
+  filter: blur(45px);
+  will-change: transform;
+}
+
+.fog-1 {
+  animation: fogMove1 12s ease-in-out infinite alternate;
+}
+
+.fog-2 {
+  opacity: 0.7;
+  animation: fogMove2 16s ease-in-out infinite alternate;
+}
+
+.fog-3 {
+  opacity: 0.5;
+  animation: fogMove3 20s ease-in-out infinite alternate;
+}
+
+@keyframes fogMove1 {
+  from {
+    transform: translateX(-20%) translateY(10%);
+  }
+
+  to {
+    transform: translateX(20%) translateY(-10%);
+  }
+}
+
+@keyframes fogMove2 {
+  from {
+    transform: translateX(20%) translateY(-15%);
+  }
+
+  to {
+    transform: translateX(-20%) translateY(15%);
+  }
+}
+
+@keyframes fogMove3 {
+  from {
+    transform: translateX(-10%) translateY(-10%) scale(1);
+  }
+
+  to {
+    transform: translateX(15%) translateY(10%) scale(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fog {
+    animation: none;
+  }
+}
+
