@@ -60,6 +60,9 @@ function MysteryMapPage() {
         const response = await axios.get(API_URL);
 
         setMysteries(response.data);
+        console.log("Primer misterio:", response.data[0]);
+
+console.log("Coordenadas:", response.data[0]?.coordinates);
       } catch (err) {
         console.error("Error loading mysteries:", err);
         setError(true);
@@ -84,18 +87,46 @@ function MysteryMapPage() {
   };
 
   // VALID COORDINATES
-  const mysteriesWithCoordinates = mysteries.filter((mystery) => {
-    const lat = mystery.coordinates?.lat;
-    const lng = mystery.coordinates?.lng;
+  // VALID COORDINATES
+
+const mysteriesWithCoordinates = mysteries
+
+  .map((mystery) => {
+
+    const lat = Number(mystery.coordinates?.lat);
+
+    const lng = Number(mystery.coordinates?.lng);
+
+    return {
+
+      ...mystery,
+
+      coordinates: { lat, lng },
+
+    };
+
+  })
+
+  .filter((mystery) => {
+
+    const { lat, lng } = mystery.coordinates;
 
     return (
+
       Number.isFinite(lat) &&
+
       Number.isFinite(lng) &&
+
       lat >= -90 &&
+
       lat <= 90 &&
+
       lng >= -180 &&
+
       lng <= 180
+
     );
+
   });
 
   // CATEGORIES
