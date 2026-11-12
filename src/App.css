@@ -182,3 +182,32 @@
     border-right-color: var(--border);
   }
 }
+/* THE UNKNOWN - MYSTERY MAP */
+
+.mystery-popup .leaflet-popup-content-wrapper {
+  background: #1a1b19;
+  color: #f0ede5;
+  border: 1px solid #b49a6c;
+  border-radius: 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.mystery-popup .leaflet-popup-content {
+  margin: 20px;
+}
+
+.mystery-popup .leaflet-popup-tip {
+  background: #1a1b19;
+}
+
+.mystery-popup .leaflet-popup-close-button {
+  color: #b49a6c !important;
+}
+
+.mystery-popup .leaflet-popup-close-button:hover {
+  color: #f0ede5 !important;
+}
+
+.leaflet-container {
+  font-family: inherit;
+}

@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function EditTheoryPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
@@ -13,30 +16,36 @@ function EditTheoryPage() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [saveError, setSaveError] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     getTheory();
   }, [id]);
 
+  // GET THEORY
   const getTheory = async () => {
     try {
+      setLoading(true);
+      setError(false);
+
       const response = await axios.get(
-        `http://localhost:5005/theories/${id}`
+        `${import.meta.env.VITE_API_URL}/theories/${id}`
       );
 
       setAuthor(response.data.author);
       setTitle(response.data.title);
       setDescription(response.data.description);
       setMysteryId(response.data.mysteryId);
-
-      setLoading(false);
     } catch (error) {
       console.log(error);
       setError(true);
+    } finally {
       setLoading(false);
     }
   };
 
+  // UPDATE THEORY
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -47,14 +56,20 @@ function EditTheoryPage() {
     };
 
     try {
+      setSaving(true);
+      setSaveError(false);
+
       await axios.patch(
-        `http://localhost:5005/theories/${id}`,
+        `${import.meta.env.VITE_API_URL}/theories/${id}`,
         updatedTheory
       );
 
       navigate(`/mysteries/${mysteryId}`);
     } catch (error) {
       console.log(error);
+      setSaveError(true);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -64,24 +79,25 @@ function EditTheoryPage() {
 
         {/* LOADING */}
         {loading && (
-          <p className="text-[#A8A8A3]">
-            Loading theory...
-          </p>
+          <LoadingSpinner text={t("loadingCases")} />
         )}
 
         {/* ERROR */}
         {error && (
           <div>
             <h2 className="mb-4 text-2xl">
-              Something went wrong.
+              {t("theoryErrorTitle")}
             </h2>
 
             <p className="mb-8 text-[#A8A8A3]">
-              We couldn't load this theory.
+              {t("theoryLoadError")}
             </p>
 
-            <Link to="/mysteries" className="text-[#B49A6C]">
-              ← BACK TO THE ARCHIVE
+            <Link
+              to="/mysteries"
+              className="text-[#B49A6C]"
+            >
+              ← {t("backToArchive")}
             </Link>
           </div>
         )}
@@ -95,25 +111,22 @@ function EditTheoryPage() {
               to={`/mysteries/${mysteryId}`}
               className="mb-16 inline-block text-xs tracking-widest text-[#B49A6C] hover:text-white"
             >
-              ← BACK TO CASE FILE
+              ← {t("backToCaseFile")}
             </Link>
 
             {/* HEADER */}
             <header className="mb-16">
 
               <p className="mb-8 text-xs tracking-[0.3em] text-[#B49A6C]">
-                08 / REVISE YOUR CONTRIBUTION
+                08 / {t("reviseContribution")}
               </p>
 
-              <h1 className="mb-8 text-6xl font-bold tracking-tighter md:text-8xl">
-                EDIT
-                <br />
-                YOUR THEORY.
+              <h1 className="mb-8 whitespace-pre-line text-6xl font-bold tracking-tighter md:text-8xl">
+                {t("editTheoryTitle")}
               </h1>
 
               <p className="max-w-xl text-lg leading-8 text-[#A8A8A3]">
-                Every investigation evolves.
-                Refine your perspective and update your contribution.
+                {t("editTheoryDescription")}
               </p>
 
             </header>
@@ -131,7 +144,7 @@ function EditTheoryPage() {
                   htmlFor="author"
                   className="mb-4 block text-xs tracking-[0.2em] text-[#B49A6C]"
                 >
-                  YOUR NAME
+                  {t("yourName")}
                 </label>
 
                 <input
@@ -152,7 +165,7 @@ function EditTheoryPage() {
                   htmlFor="title"
                   className="mb-4 block text-xs tracking-[0.2em] text-[#B49A6C]"
                 >
-                  THEORY TITLE
+                  {t("theoryTitle")}
                 </label>
 
                 <input
@@ -173,7 +186,7 @@ function EditTheoryPage() {
                   htmlFor="description"
                   className="mb-4 block text-xs tracking-[0.2em] text-[#B49A6C]"
                 >
-                  YOUR THEORY
+                  {t("yourTheory")}
                 </label>
 
                 <textarea
@@ -187,12 +200,20 @@ function EditTheoryPage() {
 
               </div>
 
+              {/* SAVE ERROR */}
+              {saveError && (
+                <p className="mb-8 text-sm text-red-400">
+                  {t("saveTheoryError")}
+                </p>
+              )}
+
               {/* SAVE BUTTON */}
               <button
                 type="submit"
-                className="cursor-pointer border border-[#B49A6C] bg-[#B49A6C] px-10 py-5 text-xs font-bold tracking-widest text-[#111210] transition-colors duration-300 hover:bg-transparent hover:text-[#B49A6C]"
+                disabled={saving}
+                className="cursor-pointer border border-[#B49A6C] bg-[#B49A6C] px-10 py-5 text-xs font-bold tracking-widest text-[#111210] transition-colors duration-300 hover:bg-transparent hover:text-[#B49A6C] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                SAVE CHANGES →
+                {saving ? t("savingChanges") : t("saveChanges")} →
               </button>
 
             </form>

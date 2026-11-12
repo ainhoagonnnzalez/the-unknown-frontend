@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 function MysteryCard({ mystery }) {
-    const {t} = useTranslation()
+  const { t } = useTranslation();
+
   return (
     <Link
       to={`/mysteries/${mystery.id}`}
@@ -23,7 +24,7 @@ function MysteryCard({ mystery }) {
         {/* CASE NUMBER AND CATEGORY */}
         <div className="mb-6 flex items-center justify-between gap-4">
           <p className="text-xs tracking-[0.2em] text-[#B49A6C]">
-            CASE / {mystery.id}
+            {t("caseFile")} / {mystery.id}
           </p>
 
           <p className="text-xs text-[#A8A8A3]">

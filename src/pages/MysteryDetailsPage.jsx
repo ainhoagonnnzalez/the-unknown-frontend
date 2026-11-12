@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function MysteryDetailsPage() {
   const { id } = useParams();
@@ -25,7 +26,7 @@ function MysteryDetailsPage() {
 
     try {
       const response = await axios.get(
-        `http://localhost:5005/mysteries/${id}`
+        `${import.meta.env.VITE_API_URL}/mysteries/${id}`
       );
 
       setMystery(response.data);
@@ -41,7 +42,7 @@ function MysteryDetailsPage() {
   const getTheories = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5005/theories?mysteryId=${id}`
+        `${import.meta.env.VITE_API_URL}/theories?mysteryId=${id}`
       );
 
       setTheories(response.data);
@@ -60,7 +61,7 @@ function MysteryDetailsPage() {
 
     try {
       await axios.delete(
-        `http://localhost:5005/theories/${theoryId}`
+        `${import.meta.env.VITE_API_URL}/theories/${theoryId}`
       );
 
       getTheories();
@@ -99,7 +100,7 @@ function MysteryDetailsPage() {
     <div className="min-h-screen bg-[#111210] px-8 py-20 text-[#F0EDE5]">
 
       {/* LOADING */}
-      {loading && <p>{t("loadingMystery")}</p>}
+      {loading && (<LoadingSpinner text={t("loadingCases")} />)}
 
       {/* ERROR */}
       {error && (
