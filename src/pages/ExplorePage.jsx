@@ -124,7 +124,7 @@ function ExplorePage() {
             02 / {t("exploreLabel")}
           </p>
 
-          <h1 className="mb-6 text-7xl font-bold tracking-tighter">
+          <h1 className="font-mystery mb-6 text-[3.2rem] leading-none tracking-[0.04em] md:text-[6rem] lg:text-[7rem]">
             {t("exploreTitle")}
           </h1>
 

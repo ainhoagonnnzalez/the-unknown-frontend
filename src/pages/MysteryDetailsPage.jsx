@@ -156,7 +156,7 @@ function MysteryDetailsPage() {
             {/* LEFT SIDE */}
             <div>
 
-              <h1 className="mb-8 font-serif text-6xl leading-none tracking-tight text-[#F0EDE5] md:text-7xl">
+              <h1 className="font-mystery mb-8 text-[3.2rem] leading-none tracking-[0.04em] text-[#F0EDE5] md:text-[5.5rem] lg:text-[6.5rem]">
                 {displayedMystery.title}
               </h1>
 
@@ -223,7 +223,7 @@ function MysteryDetailsPage() {
             <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
 
               <div>
-                <h2 className="text-5xl font-bold tracking-tighter">
+                <h2 className="font-mystery text-[2.8rem] leading-none tracking-[0.04em] text-[#F0EDE5] md:text-[4.5rem]">
                   {t("story")}
                 </h2>
               </div>
@@ -250,7 +250,7 @@ function MysteryDetailsPage() {
               02 / {t("timeline")}
             </p>
 
-            <h2 className="mb-16 text-5xl font-bold tracking-tighter">
+            <h2 className="font-mystery mb-16 text-[2.7rem] leading-none tracking-[0.04em] md:text-[4.5rem]">
               {t("timeline")}
             </h2>
 
@@ -261,7 +261,7 @@ function MysteryDetailsPage() {
 
                   {/* YEAR */}
                   <div className="w-24 shrink-0 text-right">
-                    <p className="text-xl font-bold text-[#B49A6C]">
+                    <p className="font-mystery text-3xl tracking-[0.04em] text-[#B49A6C]">
                       {item.year}
                     </p>
                   </div>
@@ -295,7 +295,7 @@ function MysteryDetailsPage() {
               03 / {t("evidence")}
             </p>
 
-            <h2 className="mb-16 text-5xl font-bold tracking-tighter">
+            <h2 className="font-mystery mb-16 text-[2.8rem] leading-none tracking-[0.04em] md:text-[4.5rem]">
               {t("evidence")}
             </h2>
 
@@ -313,7 +313,7 @@ function MysteryDetailsPage() {
                   </p>
 
                   {/* EVIDENCE TITLE */}
-                  <h3 className="mb-6 text-2xl font-bold text-[#F0EDE5]">
+                  <h3 className="font-mystery mb-6 text-[2.1rem] leading-none tracking-[0.04em] text-[#F0EDE5] md:text-[2.8rem]">
                     {item.title}
                   </h3>
 
@@ -335,7 +335,7 @@ function MysteryDetailsPage() {
               04 / {t("unansweredQuestions")}
             </p>
 
-            <h2 className="mb-16 text-5xl font-bold tracking-tighter">
+            <h2 className="font-mystery mb-16 text-[2.8rem] leading-none tracking-[0.04em] md:text-[4.5rem]">
               {t("unansweredQuestions")}
             </h2>
 
@@ -354,7 +354,7 @@ function MysteryDetailsPage() {
                     </p>
 
                     {/* QUESTION */}
-                    <h3 className="flex-1 text-2xl font-medium text-[#F0EDE5] transition-colors duration-300 group-hover:text-[#B49A6C]">
+                    <h3 className="font-mystery flex-1 text-[2rem] leading-none tracking-[0.04em] text-[#F0EDE5] transition-colors duration-300 group-hover:text-[#B49A6C] md:text-[2.8rem]">
                       {question}
                     </h3>
 
@@ -377,7 +377,7 @@ function MysteryDetailsPage() {
               05 / {t("theories")}
             </p>
 
-            <h2 className="mb-6 text-5xl font-bold tracking-tighter">
+            <h2 className="font-mystery mb-6 text-[2.8rem] leading-none tracking-[0.04em] md:text-[4.5rem]">
               {t("documentedTheories")}
             </h2>
 
@@ -407,7 +407,7 @@ function MysteryDetailsPage() {
                   </div>
 
                   {/* THEORY TITLE */}
-                  <h3 className="mb-6 text-2xl font-bold text-[#F0EDE5]">
+                  <h3 className="font-mystery mb-6 text-[2.1rem] leading-none tracking-[0.04em] text-[#F0EDE5] md:text-[2.8rem]">
                     {theory.title}
                   </h3>
 
@@ -445,7 +445,7 @@ function MysteryDetailsPage() {
             <div className="mb-16 flex flex-col justify-between gap-8 md:flex-row md:items-end">
 
               <div>
-                <h2 className="mb-6 text-5xl font-bold tracking-tighter">
+                <h2 className="font-mystery mb-6 text-[2.8rem] leading-none tracking-[0.04em] md:text-[4.5rem]">
                   {t("communityTheories")}
                 </h2>
 
@@ -479,7 +479,7 @@ function MysteryDetailsPage() {
                   </p>
 
                   {/* TITLE */}
-                  <h3 className="mb-6 text-2xl font-bold text-[#F0EDE5]">
+                  <h3 className="font-mystery mb-6 text-[2rem] leading-none tracking-[0.04em] text-[#F0EDE5] md:text-[2.5rem]">
                     {theory.title}
                   </h3>
 
@@ -531,7 +531,7 @@ function MysteryDetailsPage() {
             {communityTheories.length === 0 && (
               <div className="border border-white/10 bg-[#1A1B19] px-8 py-16 text-center">
 
-                <h3 className="mb-4 text-2xl text-[#F0EDE5]">
+                <h3 className="font-mystery mb-4 text-[2rem] leading-none tracking-[0.04em] text-[#F0EDE5] md:text-[2.8rem]">
                   {t("noCommunityTheories")}
                 </h3>
 

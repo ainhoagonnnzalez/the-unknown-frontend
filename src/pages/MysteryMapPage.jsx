@@ -15,7 +15,7 @@ import {
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-const API_URL = "https://m2project-json-server.onrender.com/mysteries";
+const API_URL = `${import.meta.env.VITE_API_URL}/mysteries`;
 
 // GOLD MARKER
 const goldMarker = L.divIcon({
@@ -131,7 +131,7 @@ function MysteryMapPage() {
           {t("mapLabel")}
         </p>
 
-        <h1 className="mb-6 font-serif text-6xl tracking-tight md:text-8xl">
+        <h1 className="font-mystery mb-6 text-[3.2rem] leading-none tracking-[0.04em] md:text-[6rem] lg:text-[7rem]">
           {t("mapTitle")}
         </h1>
 

@@ -15,7 +15,7 @@ function NotFoundPage() {
         404
       </h1>
 
-      <h2 className="mb-6 text-5xl font-bold tracking-tighter">
+      <h2 className="font-mystery mb-6 text-5xl leading-none tracking-[0.04em] text-[#F0EDE5] md:text-7xl">
         {t("notFoundTitle")}
       </h2>
 

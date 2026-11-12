@@ -32,7 +32,7 @@ function Footer() {
           <div>
             <Link
               to="/"
-              className="mb-6 inline-block font-serif text-3xl text-[#E8DDC7] transition-colors duration-300 hover:text-[#B49A6C]"
+              className="mb-6 inline-block font-mystery text-[2.2rem] leading-none tracking-[0.04em] text-[#E8DDC7] transition-colors duration-300 hover:text-[#B49A6C]"
             >
               THE UNKNOWN.
             </Link>

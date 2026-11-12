@@ -121,7 +121,7 @@ function EditTheoryPage() {
                 08 / {t("reviseContribution")}
               </p>
 
-              <h1 className="mb-8 whitespace-pre-line text-6xl font-bold tracking-tighter md:text-8xl">
+              <h1 className="font-mystery mb-8 whitespace-pre-line text-[3.2rem] leading-none tracking-[0.04em] md:text-[6rem]">
                 {t("editTheoryTitle")}
               </h1>
 

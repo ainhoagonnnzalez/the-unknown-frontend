@@ -19,7 +19,7 @@ function MysteryCard({ mystery }) {
       </div>
 
       {/* CONTENT */}
-      <div className="flex min-h-[260px] flex-col p-8">
+      <div className="flex min-h-[280px] flex-col p-8">
 
         {/* CASE NUMBER AND CATEGORY */}
         <div className="mb-6 flex items-center justify-between gap-4">
@@ -33,7 +33,7 @@ function MysteryCard({ mystery }) {
         </div>
 
         {/* TITLE */}
-        <h2 className="mb-4 font-serif text-3xl leading-tight text-[#F0EDE5]">
+        <h2 className="font-mystery mb-4 text-[2.1rem] leading-none tracking-[0.04em] text-[#F0EDE5] md:text-[2.8rem]">
           {mystery.title}
         </h2>
 

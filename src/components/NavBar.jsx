@@ -10,20 +10,16 @@ function NavBar() {
 
   return (
     <nav className="absolute left-0 top-0 z-20 w-full px-8 py-6 text-[#E8DDC7] md:px-12">
-
       <div className="relative flex items-center justify-between">
-
-        {/* LOGO */}
         <Link
           to="/"
-          className="font-serif text-3xl text-[#E8DDC7] transition-colors duration-300 hover:text-[#B6A17A]"
+          className="font-mystery text-[2rem] leading-none tracking-[0.04em] text-[#E8DDC7] transition-colors duration-300 hover:text-[#B6A17A] md:text-[2.4rem]"
         >
           THE UNKNOWN.
         </Link>
 
         {/* CENTERED NAVIGATION */}
         <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 md:flex">
-
           <Link
             to="/"
             className="whitespace-nowrap text-xs tracking-[0.2em] text-[#E8DDC7] transition-colors duration-300 hover:text-[#B6A17A]"
@@ -44,12 +40,10 @@ function NavBar() {
           >
             {t("mapNav")}
           </Link>
-
         </div>
 
         {/* LANGUAGE SWITCH */}
         <div className="ml-auto flex items-center gap-3 border-l border-white/20 pl-6">
-
           <button
             type="button"
             onClick={() => changeLanguage("en")}
@@ -67,9 +61,7 @@ function NavBar() {
           >
             ES
           </button>
-
         </div>
-
       </div>
     </nav>
   );
