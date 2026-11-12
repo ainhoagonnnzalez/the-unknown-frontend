@@ -354,7 +354,7 @@ function MysteryDetailsPage() {
                     </p>
 
                     {/* QUESTION */}
-                    <h3 className="font-mystery flex-1 text-[2rem] leading-none tracking-[0.04em] text-[#F0EDE5] transition-colors duration-300 group-hover:text-[#B49A6C] md:text-[2.8rem]">
+                    <h3 className="flex-1 text-lg font-medium leading-relaxed text-[#F0EDE5] transition-colors duration-300 group-hover:text-[#B49A6C] md:text-xl">
                       {question}
                     </h3>
 
