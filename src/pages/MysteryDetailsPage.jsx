@@ -156,7 +156,7 @@ function MysteryDetailsPage() {
             {/* LEFT SIDE */}
             <div>
 
-              <h1 className="font-mystery mb-8 text-[3.2rem] leading-none tracking-[0.04em] text-[#F0EDE5] md:text-[5.5rem] lg:text-[6.5rem]">
+              <h1 className="font-mystery mb-8 text-5xl leading-none tracking-[0.04em] text-[#F0EDE5] md:text-7xl">
                 {displayedMystery.title}
               </h1>
 

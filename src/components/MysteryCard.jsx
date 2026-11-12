@@ -33,7 +33,7 @@ function MysteryCard({ mystery }) {
         </div>
 
         {/* TITLE */}
-        <h2 className="font-mystery mb-4 text-[15px] leading-tight tracking-[0.04em] text-[#F0EDE5] md:text-[18px]]">
+        <h2 className="font-mystery mb-4 text-2xl leading-tight tracking-[0.04em] text-[#F0EDE5] md:text-3xl">
           {mystery.title}
         </h2>
 

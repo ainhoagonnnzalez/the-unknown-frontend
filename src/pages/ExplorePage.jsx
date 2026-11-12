@@ -18,21 +18,33 @@ function ExplorePage() {
   }, []);
 
   // GET ALL MYSTERIES
-  const getMysteries = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/mysteries`
-      );
+// GET ALL MYSTERIES
+const getMysteries = async () => {
+  setLoading(true);
+  setError(false);
 
-      setMysteries(response.data);
-      setError(false);
-    } catch (error) {
-      console.log(error);
-      setError(true);
-    } finally {
-      setLoading(false);
+  try {
+    const url = `${import.meta.env.VITE_API_URL}/mysteries`;
+
+    console.log("API URL:", url);
+
+    const response = await axios.get(url);
+
+    console.log("API response:", response.data);
+
+    if (!Array.isArray(response.data)) {
+      throw new Error("La API no ha devuelto un array de misterios");
     }
-  };
+
+    setMysteries(response.data);
+  } catch (error) {
+    console.error("Error loading mysteries:", error);
+    setMysteries([]);
+    setError(true);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // CURRENT LANGUAGE
   const isSpanish = i18n.language.startsWith("es");
