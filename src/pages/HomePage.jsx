@@ -138,7 +138,7 @@ const getMysteries = async () => {
           </p>
 
           {/* SECTION TITLE */}
-          <h2 className="font-mystery mb-4 text-[2.8rem] leading-none tracking-[0.04em] text-[#F0EDE5] md:text-[4.5rem]">
+          <h2 className="font-mystery mb-4 text-[2rem] leading-tight tracking-[0.04em] text-[#F0EDE5] md:text-[2.5rem]">
             {t("featuredTitle")}
           </h2>
 
